@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Plant Disease Detection AI</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>🌱 Plant Disease Detection AI</h1>
+
+        <p>
+            Upload a plant leaf image and let the AI analyze it.
+        </p>
+
+        <form method="POST" enctype="multipart/form-data">
+
+            <input
+                type="file"
+                name="image"
+                accept="image/*"
+                required
+            >
+
+            <button type="submit">
+                🔍 Detect Disease
+            </button>
+
+        </form>
+
+        {% if error %}
+
+        <div class="error">
+            {{ error }}
+        </div>
+
+        {% endif %}
+
+        {% if prediction %}
+
+        <div class="result">
+
+            <h2>Prediction Result</h2>
+
+            <h3>
+                🌿 {{ prediction }}
+            </h3>
+
+            <p>
+                Confidence:
+                <strong>{{ "%.2f"|format(confidence) }}%</strong>
+            </p>
+
+        </div>
+
+        {% endif %}
+
+        <div class="warning">
+
+            ⚠️ This project is for educational purposes.
+            AI predictions may be incorrect and should not
+            be treated as professional agricultural diagnosis.
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
